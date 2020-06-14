@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "bCEg+AmEdTco9JPZLi8qoZ1WRycsrcwEggHh8OtlzI83HaGAB2VUFRVZnHhfE1BugwMcHOzobBf+G9Cmq/lfzw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Eyob\\Documents\\GitHub\\P4G-Save-Tool\\P4G Save Tool\\P4G Save Tool\\P4G Save Tool.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eyob\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Eyob\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

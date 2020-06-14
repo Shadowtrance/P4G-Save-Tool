@@ -1,0 +1,22 @@
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.exe
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.dll.config
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.deps.json
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.runtimeconfig.json
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.runtimeconfig.dev.json
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.dll
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\bin\Debug\netcoreapp3.1\P4G Save Tool.pdb
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.csprojAssemblyReference.cache
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\About.g.cs
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool_MarkupCompile.cache
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool_MarkupCompile.lref
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\About.baml
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.g.resources
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G_Save_Tool.Properties.Resources.resources
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.csproj.GenerateResource.cache
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.csproj.CoreCompileInputs.cache
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.dll
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.pdb
+C:\Users\Eyob\Documents\GitHub\P4G-Save-Tool\P4G Save Tool\P4G Save Tool\obj\Debug\netcoreapp3.1\P4G Save Tool.genruntimeconfig.cache

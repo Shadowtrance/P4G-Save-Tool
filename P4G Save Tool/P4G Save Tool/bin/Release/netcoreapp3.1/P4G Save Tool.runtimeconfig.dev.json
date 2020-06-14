@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Eyob\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Eyob\\.nuget\\packages"
+    ]
+  }
+}
