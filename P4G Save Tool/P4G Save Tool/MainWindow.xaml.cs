@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -1231,12 +1232,17 @@ namespace P4G_Save_Tool
                     w.BaseStream.Position = 9688 + (48 * (persona.id - 1));
                     w.WritePersona(persona);
                 }
+
+                using (BinaryReader r = new BinaryReader(stream))
+                {
+                    currentFileCopy = ReadFileStream(r);
+                }
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            SaveFile(File.OpenWrite(filename));
+            SaveFile(new FileStream(filename, FileMode.Open, FileAccess.ReadWrite));
         }
 
         private void itemSectBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1503,6 +1509,28 @@ namespace P4G_Save_Tool
             }
         }
 
+        private void UpdateSaveSlot(Stream file)
+        {
+            using (BinaryWriter w = new BinaryWriter(file))
+            {
+                // Copy the file 
+                using (BinaryReader r = new BinaryReader(file))
+                {
+                    w.Write(ReadFileStream(r));
+
+                    w.BaseStream.Position = 24;
+                    using (var md5 = System.Security.Cryptography.MD5.Create())
+                    {
+                        md5.TransformFinalBlock(currentFileCopy, 0, currentFileCopy.Length);
+                        Debug.WriteLine("MD5 hash: " + BitConverter.ToString(md5.Hash) + "; Length: " + md5.Hash.Length);
+                        w.Write(md5.Hash);
+                    }
+                }
+
+            }
+
+        }
+
         private void OpenFile(Stream file)
         {
             using (BinaryReader r = new BinaryReader(file))
@@ -1606,9 +1634,7 @@ namespace P4G_Save_Tool
                     AddCompendiumItem(persona);
                 }
 
-
-                r.BaseStream.Position = 0;
-                currentFileCopy = r.ReadBytes((int)r.BaseStream.Length);
+                currentFileCopy = ReadFileStream(r);
 
                 if (compendiumBox.Items.Count > 0)
                     compendiumBox.SelectedIndex = 0;
@@ -1652,6 +1678,14 @@ namespace P4G_Save_Tool
                 charBox_SelectionChanged(null, null);
             }
         }
+        private byte[] ReadFileStream(BinaryReader r)
+        {
+            var position = r.BaseStream.Position;
+            r.BaseStream.Position = 0;
+            var bytes = r.ReadBytes((int)r.BaseStream.Length);
+            r.BaseStream.Position = position;
+            return bytes;
+        }
 
         private void OpenFTP_Click(object sender, RoutedEventArgs e)
         {
@@ -1685,7 +1719,7 @@ namespace P4G_Save_Tool
             d.Filter = "Binary files (*.bin)|*.bin";
             if (d.ShowDialog() == true)
             {
-                SaveFile(File.OpenWrite(filename = d.FileName));
+                SaveFile(new FileStream(filename = d.FileName, FileMode.Open, FileAccess.ReadWrite));
                 Title = originalTitle + " - " + d.SafeFileName;
                 isFTP = false;
             }
@@ -1905,6 +1939,20 @@ namespace P4G_Save_Tool
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void UpdateSaveSlot_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.Filter = "Binary Save Slot files (*.binslot)|*.binslot";
+            if (d.ShowDialog() == true)
+            {
+                UpdateSaveSlot(new FileStream(filename = d.FileName, FileMode.Open, FileAccess.ReadWrite));
+                // OpenFile(File.OpenRead(filename = d.FileName));
+                // Title = originalTitle + " - " + d.SafeFileName;
+                // isFTP = false;
+            }
 
         }
 
