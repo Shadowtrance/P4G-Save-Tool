@@ -1233,6 +1233,7 @@ namespace P4G_Save_Tool
                     w.WritePersona(persona);
                 }
 
+                w.Flush();
                 using (BinaryReader r = new BinaryReader(stream))
                 {
                     currentFileCopy = ReadFileStream(r);
@@ -1522,9 +1523,9 @@ namespace P4G_Save_Tool
                     using (var md5 = System.Security.Cryptography.MD5.Create())
                     {
                         md5.TransformFinalBlock(currentFileCopy, 0, currentFileCopy.Length);
-                        Debug.WriteLine("MD5 hash: " + BitConverter.ToString(md5.Hash) + "; Length: " + md5.Hash.Length);
                         w.Write(md5.Hash);
                     }
+                    w.Flush();
                 }
 
             }
@@ -1948,7 +1949,7 @@ namespace P4G_Save_Tool
             d.Filter = "Binary Save Slot files (*.binslot)|*.binslot";
             if (d.ShowDialog() == true)
             {
-                UpdateSaveSlot(new FileStream(filename = d.FileName, FileMode.Open, FileAccess.ReadWrite));
+                UpdateSaveSlot(new FileStream(d.FileName, FileMode.Open, FileAccess.ReadWrite));
                 // OpenFile(File.OpenRead(filename = d.FileName));
                 // Title = originalTitle + " - " + d.SafeFileName;
                 // isFTP = false;
