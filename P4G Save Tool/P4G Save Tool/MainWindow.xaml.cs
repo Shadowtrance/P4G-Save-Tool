@@ -364,6 +364,7 @@ namespace P4G_Save_Tool
     };
     public partial class MainWindow : Window
     {
+        private const int NameAndLevelHeaderPosition = 0x2c;
         string filename;
         byte[] currentFileCopy;
         bool readyEvents;
@@ -1519,12 +1520,86 @@ namespace P4G_Save_Tool
                 {
                     w.Write(ReadFileStream(r));
 
-                    w.BaseStream.Position = 24;
+                    w.BaseStream.Position = 0x18;
                     using (var md5 = System.Security.Cryptography.MD5.Create())
                     {
                         md5.TransformFinalBlock(currentFileCopy, 0, currentFileCopy.Length);
                         w.Write(md5.Hash);
                     }
+
+                    // Name and level
+                    w.BaseStream.Position = NameAndLevelHeaderPosition;
+                    var nameAndLevel = new List<byte>();
+                    foreach (var letter in firstname)
+                    {
+                        var str = new byte[] { 0xef, 0, 0 };
+                        if (letter >= 'a' && letter <= 'z')
+                        {
+                            str[1] = 0xbd;
+                            str[2] = (byte)(0x20 + letter);
+                        }
+                        else if (letter >= 'A' && letter <= 'Z')
+                        {
+                            str[1] = 0xbc;
+                            str[2] = (byte)(0x60 + letter);
+                        }
+                        nameAndLevel.AddRange(str);
+                    }
+                    nameAndLevel.Add((byte)' ');
+                    foreach (var letter in surname)
+                    {
+                        var str = new byte[] { 0xef, 0, 0 };
+                        if (letter >= 'a' && letter <= 'z')
+                        {
+                            str[1] = 0xbd;
+                            str[2] = (byte)(0x20 + letter);
+                        }
+                        else if (letter >= 'A' && letter <= 'Z')
+                        {
+                            str[1] = 0xbc;
+                            str[2] = (byte)(0x60 + letter);
+                        }
+                        nameAndLevel.AddRange(str);
+                    }
+                    nameAndLevel.Add((byte)' ');
+                    var levelString = "Lv:" + (int)mcLevel;
+                    nameAndLevel.AddRange(Encoding.ASCII.GetBytes(levelString));
+                    w.Write(nameAndLevel.ToArray());
+
+
+                    // summary, skipping Date: blah
+                    r.BaseStream.Position = 0xf7;
+                    // Get to name and level
+                    while (r.PeekChar() != 'N')
+                    {
+                        r.ReadChar();
+                    }
+                    while (r.ReadChar() != ':')
+                    {
+                    }
+                    Debug.WriteLine($"Got to name at position {r.BaseStream.Position:X}");
+                    var namePosition = r.BaseStream.Position;
+
+                    // Skip name and level to get to Difficulty
+                    var c = r.ReadByte();
+                    while (c != 0x0a)
+                    {
+                        c = r.ReadByte();
+                    }
+
+                    // Save difficulty onwards.
+                    var postNameSummary = new List<byte>();
+                    while (c != 0x00)
+                    {
+                        postNameSummary.Add(c);
+                        c = r.ReadByte();
+
+                    }
+                    w.BaseStream.Position = namePosition;
+                    Debug.WriteLine($"Writer at position {w.BaseStream.Position:X}");
+                    w.Write(nameAndLevel.ToArray());
+                    w.Write(postNameSummary.ToArray());
+
                     w.Flush();
                 }
 
