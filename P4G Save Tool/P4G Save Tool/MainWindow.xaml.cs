@@ -369,7 +369,7 @@ namespace P4G_Save_Tool
         byte[] currentFileCopy;
         bool readyEvents;
         bool[] scroll = { false, false };
-        int[] itemSel = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] itemSel = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         ScrollViewer invScroll, stackScroll;
         Item[] charEList;
         List<Item> armor;
@@ -604,7 +604,7 @@ namespace P4G_Save_Tool
             socialLink = new List<Item>(Utils.GetFromDatabase(Database.allItems, 1184, 20));
             shelf = new List<Item>(Utils.GetFromDatabase(Database.allItems, 2056, 5));
             costumes = new List<Item>(Utils.GetFromDatabase(Database.allItems, 1792, 193));
-            other = new List<Item>();
+            other = new List<Item>(Utils.GetFromDatabase(Database.allItems, 978, 36));
 
             accessories.AddRange(Utils.GetFromDatabase(Database.allItems, 615, 69));
             accessories.AddRange(Utils.GetFromDatabase(Database.allItems, 685, 1));
