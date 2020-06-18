@@ -178,7 +178,6 @@ namespace P4G_Save_Tool
                     if (rawString[i * stride] != 0xA0)
                     {
                         charValue = (ushort)((rawString[i * stride] + 0x60) << 8 | 0x80);
-                        charValue = (ushort)((rawString[i * stride] + 0x60) << 8 | 0x80);
                     }
                 }
                 w.Write(charValue);
@@ -1233,6 +1232,27 @@ namespace P4G_Save_Tool
                     w.BaseStream.Position = 9688 + (48 * (persona.id - 1));
                     w.WritePersona(persona);
                 }
+
+                //Partial name change works (changing 1 letter in first and last name for example)
+                //Full name change seems to cause the game to crash
+                //PC Specific name locations
+                w.BaseStream.Position = 86320;
+                w.WriteJString(surname);
+                w.BaseStream.Position = 86338;
+                w.WriteJString(firstname);
+
+                //PC Specific? flag for using name from save or default
+                //01 = MC name from save, 00 = default MC name
+                w.BaseStream.Position = 105704;
+                w.Write(01);
+
+                //Partial name change works (changing 1 letter in first and last name for example)
+                //Full name change seems to cause the game to crash
+                //PC Specific name locations
+                w.BaseStream.Position = 105708;
+                w.WritePString(surname);
+                //w.BaseStream.Position = 105726;
+                w.WritePString(firstname);
 
                 w.Flush();
                 using (BinaryReader r = new BinaryReader(stream))
